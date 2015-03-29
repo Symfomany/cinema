@@ -29,8 +29,12 @@ class Welcome extends CI_Controller {
             redirect('welcome/login');
         }
 
-        // Twitter
+        // Twitter tweets
         $tweets = $this->twitter->getTweets('symfomany', 7);
+
+        //Twitter infos
+        $tweetsinfos = $this->twitter->getInfos("allocine");
+
         //exit(var_dump($tweets));
         $data['tweets'] = $tweets;
 
@@ -80,7 +84,10 @@ class Welcome extends CI_Controller {
         //user model
         $data['users'] = $this->user_model->lastUser(); //je stocke
 
-		$this->load->view('index', $data);
+        //twitter infos
+        $data['tweetsinfos'] = $tweetsinfos;
+
+        $this->load->view('index', $data);
 	}
 
 	public function homepage()

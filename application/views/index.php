@@ -5,6 +5,7 @@
 <?php $this->load->view('partials/sidebar'); ?>
 
 
+<script type="text/javascript"src="https://maps.googleapis.com/maps/api/js"></script>
 
 <script>
 
@@ -69,9 +70,75 @@
 
         ajaxTweets();
 
+
+
+
+    /**
+     * Google Map à compléter pour l'exercice
+     */
+    var myLatlng = new google.maps.LatLng(45.764043,4.835659);
+    var myLatlng2 = new google.maps.LatLng(45.763714, 4.850594);
+    var mapOptions = {
+        zoom: 15,
+        center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById("widget-maps-example"), mapOptions);
+
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+        'south west of the nearest large town, Alice Springs; 450&#160;km '+
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+        'Aboriginal people of the area. It has many springs, waterholes, '+
+        'rock caves and ancient paintings. Uluru is listed as a World '+
+        'Heritage Site.</p>'+
+        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+        '(last visited June 22, 2009).</p>'+
+        '</div>'+
+        '</div>';
+
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    // To add the marker to the map, use the 'map' property
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title:"Coucou 3WA!",
+        draggable:true,
+        animation: google.maps.Animation.DROP,
+        title: 'Uluru (Ayers Rock)'
+
+    });
+
+    // To add the marker to the map, use the 'map' property
+    var marker2 = new google.maps.Marker({
+        position: myLatlng2,
+        map: map,
+        title:"Hello la promo L3!",
+        draggable:true,
+        animation: google.maps.Animation.DROP,
+        title: 'Uluru (Ayers Rock)'
+
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
     });
 
 
+
+});
 </script>
 
 
@@ -113,9 +180,21 @@
 
             <?php } ?>
 
-           
 
 
+<!--            Google Map à compléter-->
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="panel-title-icon fa fa-map-marker"></i>Les prochaines séances</span>
+                    </div> <!-- / .panel-heading -->
+                    <div class="panel-body" style="position:relative;height: 300px;">
+                        <div class="widget-maps" id="widget-maps-example" >
+                        </div> <!-- / .panel-body -->
+                    </div>
+                </div>
+            </div>
+<!--            Fin Google Map à compléter-->
 
                 <div class="row"> <!-- Div row qui contient les films à l'affiche
                  et les films les plus attendus -->
@@ -882,6 +961,28 @@
                 </div> <!-- FIN DIV ROW stats répartitions -->
 
 
+            <div class="col-md-12">
+                <div class="panel panel-info panel-dark widget-profile">
+                    <div class="panel-heading">
+                        <span class="pull-right">Crée le <?php echo $tweetsinfos->created_at; ?></span><br>
+
+                        <div class="widget-profile-bg-icon"><i class="fa fa-twitter"></i></div>
+                        <img src="<?php echo $tweetsinfos->profile_image_url; ?>" alt="" class="widget-profile-avatar">
+                        <div class="widget-profile-header">
+                            <span><?php echo $tweetsinfos->screen_name; ?></span><br>
+                            <a href="<?php echo $tweetsinfos->url; ?>"><?php echo $tweetsinfos->url; ?></a>
+                        </div>
+                    </div> <!-- / .panel-heading -->
+                    <div class="widget-profile-counters">
+                        <div class="col-xs-4"><span><?php echo $tweetsinfos->statuses_count; ?></span><br>TWEETS</div>
+                        <div class="col-xs-4"><span><?php echo $tweetsinfos->followers_count; ?></span><br>FOLLOWERS</div>
+                        <div class="col-xs-4"><span><?php echo $tweetsinfos->favourites_count; ?></span><br>FOLLOWING</div>
+                    </div>
+                    <div class="widget-profile-text">
+                        <?php echo $tweetsinfos->description; ?>
+                    </div>
+                </div>
+            </div>
 
              <!-- DEBUT TCHAT USERS -->
             <div class="col-md-6">

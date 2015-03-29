@@ -5,6 +5,13 @@ Projet Cinema 3W Academy
 Projet pédagogique "fil-rouge" d'une plateforme cinématographique 3W Academy,
 développer sous Boostrap Twitter avec le framework MVC Codeignietr
 
+Back-Office:
+http://45.55.153.47/codeigniter
+Login: demonstration
+Mdp: Troiswa_2015
+
+Front-Office:
+http://45.55.153.47/codeigniter/index.php/frontend
 
 
 ###################

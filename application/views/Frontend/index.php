@@ -248,7 +248,7 @@
                             $i=1;
                             foreach($cats as $cat) { ?>
 
-                                <li><div class="wow animated fadeInLeft" data-wow-duration="1s" data-delay="0.<?php echo $i*2; ?>s" style="width: <?php echo $cat->nbmov/$nbfilms->nb*100; ?>%"><?php echo $cat->cat; ?> / <?php echo $cat->nbmov/$nbfilms->nb*100; ?>%</div></li>
+                                <li><div class="wow animated fadeInLeft" data-wow-duration="1s" data-delay="0.<?php echo $i*2; ?>s" style="width: <?php echo $cat->nbmov/$nbfilms->nb*100; ?>%"><?php echo $cat->cat; ?> / <?php echo round($cat->nbmov/$nbfilms->nb*100); ?>%</div></li>
 
                             <?php
                             $i++;
@@ -426,7 +426,7 @@
                             <!-- Carousel item -->
                             <div class="item col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
                                 <span class="fa fa-twitter icon"></span>
-                                <p><?php echo $tweet->text; ?></p>
+                                <p><?php echo $tweet['text']; ?></p>
                                 <div class="author">- @allocine -</div>
                             </div>
 
@@ -495,7 +495,7 @@
 							<div class="dotted-break">
 								<span></span><span></span><span></span><span></span><span></span>
 							</div>
-							<h2>Boyer JUlien</h2>
+							<h2>Boyer Julien</h2>
 						</div>
 					</div>
 				</header>
@@ -508,10 +508,10 @@
 						<span class="wow fadeInRight" data-wow-delay="0.6s"><i class="fa fa-phone icon"></i>+33(0) 6 74 58 56 48</span>
 					</div>
 					<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-						<form role="form" data-parsley-validate>
-							<input type="text" class="form-control wow fadeInLeft" data-wow-delay="0.2s" placeholder="Nom" required data-parsley-error-message="Entrez votre nom">
-							<input type="email" class="form-control wow fadeInLeft" data-wow-delay="0.4s" placeholder="Email" required data-parsley-error-message="Entrez votre email">
-							<textarea class="form-control wow fadeInLeft" data-wow-delay="0.6s" rows="6" placeholder="Message" required data-parsley-error-message="Entrez votre message"></textarea>
+						<form action="<?php echo site_url('frontend/index') ?>" method="post" role="form" data-parsley-validate>
+							<input name="nom" type="text" class="form-control wow fadeInLeft" data-wow-delay="0.2s" placeholder="Nom" required data-parsley-error-message="Entrez votre nom">
+							<input name="email" type="email" class="form-control wow fadeInLeft" data-wow-delay="0.4s" placeholder="Email" required data-parsley-error-message="Entrez votre email">
+							<textarea name="message" class="form-control wow fadeInLeft" data-wow-delay="0.6s" rows="6" placeholder="Message" required data-parsley-error-message="Entrez votre message"></textarea>
 							<button type="submit" class="btn btn-lg wow fadeInUp" data-wow-delay="1s">Envoyer</button>
 						</form>
 					</div>
@@ -521,7 +521,7 @@
 
 		<!-- Google map -->
 		<div class="googleMapWrap">
-			<div id="googleMap" class="wow flipInX" data-lat="45.7772638" data-lng="4.8604309"></div>
+			<div id="googleMap" class="wow flipInX" data-lat="45.757222" data-lng="4.898881"></div>
 		</div>
 
 

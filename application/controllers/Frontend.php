@@ -61,7 +61,38 @@ class Frontend extends CI_Controller {
         // retourne les 3 derniers films mis en vente
         $data['filmsshop'] = $this->movie_model->filmsShop();
 
-        $this->load->view('Frontend/index', $data);
+
+        $this->form_validation->set_rules('nom','Prénom','required|min_length[3]');
+        $this->form_validation->set_rules('email','Nom','required|valid_email');
+        $this->form_validation->set_rules('message','Message','required|min_length[10]');
+
+        //Personnalisation des erreurs
+        $this->form_validation->set_message('required', 'Le %s doit être rempli');
+        $this->form_validation->set_message('min_length', 'Le %s doit avoir un minimum de %s caractères.');
+        $this->form_validation->set_message('valid_email', 'Le %s doit etre valide');
+
+
+        //Si mon formulaire contient des erreurs
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('Frontend/index', $data);
+        }
+
+        else { // quand mon formulaire est valide
+
+            $nom = $this->input->post('nom');
+            $email = $this->input->post('email');
+            $message = $this->input->post('message');
+
+            $this->email->from($email, $nom);
+            $this->email->to('julien@meetserious.com');
+
+            $this->email->subject('Email de contact 3WA! ');
+            $this->email->message($message);
+
+            $this->email->send();
+
+            redirect('frontend/index');
+        }
     }
 
 

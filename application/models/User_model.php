@@ -143,9 +143,12 @@ class User_model extends CI_Model{
 
     function editer($id, $image) {
 
+        $passwd = $this->input->post('password1');
+        $enc_passwd = $this->encrypt->encode($passwd);
+
         // je prépare un tableau de données avec les clés qui sont mes champs de tables
         $data = array(
-            'password' => $this->input->post('password1'),
+            'password' => $passwd,
             'email' => $this->input->post('email'),
             'is_admin' => $this->input->post('role'),
             'avatar' => base_url().'uploads/users/'.$image['file_name']

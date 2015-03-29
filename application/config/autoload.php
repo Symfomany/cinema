@@ -61,7 +61,7 @@ $autoload['packages'] = array();
 */
 
 $autoload['libraries'] = array('database','form_validation', 'session',
-                               'encrypt','twitter','pagination', 'panier', 'facebookauth');
+                               'encrypt','twitter','pagination', 'panier', 'facebookauth', 'email');
 
 
 /*
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','date_relative','addons');
+$autoload['helper'] = array('url','form','date_relative','addons', 'email');
 
 
 /*

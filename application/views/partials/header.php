@@ -216,6 +216,7 @@
                 </script>
                 <!-- / Javascript -->
 
+                <?php if(!empty($user)) { ?>
                 <div class="dropdown-menu widget-messages-alt no-padding" style="width: 300px;">
                     <div class="messages-list" id="main-navbar-messages">
 
@@ -244,7 +245,9 @@
                 </form>
             </li>
 
-                <?php if(!empty($user)) { ?>
+            <li>
+                <a target="_blank" href="<?php echo site_url('frontend/index') ?>"><i class="fa fa-star"></i> Front-Office</a>
+            </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
