@@ -86,7 +86,7 @@
 
             <div class="form-group" style="margin-bottom: 0;">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Enregistrer</button>
                 </div>
 
             </div> <!-- / .form-group -->

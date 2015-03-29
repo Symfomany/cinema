@@ -8,6 +8,16 @@
 <div id="content-wrapper">
 
 
+    <div class="page-header">
+
+        <div class="row">
+            <!-- Page header, center on small screens -->
+            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-comments page-header-icon"></i>&nbsp;&nbsp;Commentaires</h1>
+
+        </div>
+
+    </div>
+
     <!-- 45.1. $JQUERY_DATA_TABLES_EXAMPLE =============================================================
 
             Examples

@@ -77,7 +77,29 @@
 
             <div id="content-wrapper">
 
-            <di
+            <div class="page-header">
+
+                <div class="row">
+                    <!-- Page header, center on small screens -->
+                    <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-dashboard page-header-icon"></i>&nbsp;&nbsp;Dashboard</h1>
+
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="row">
+                            <hr class="visible-xs no-grid-gutter-h">
+                            <!-- Margin -->
+                            <div class="visible-xs clearfix form-group-margin"></div>
+
+                            <form method="post" action="<?php echo site_url('Movie/rechercher'); ?>" class="pull-right col-xs-12 col-sm-6">
+                                <div class="input-group no-margin">
+                                    <span class="input-group-addon" style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i class="fa fa-search"></i></span>
+                                    <input type="text" placeholder="Rechercher un film..." required name="mot" class="form-control no-padding-hr" style="border:none;background: #fff;background: rgba(0,0,0,.05);">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <?php
             // Je récupère mon message flash grace à ma clé success
             $message = $this->session->flashdata('success');
@@ -99,7 +121,7 @@
                  et les films les plus attendus -->
 
                     <div class="col-md-6" id="filmsaffiches"> <!-- Films à l'affiche -->
-                        <h1 class="text-success text-center">Films à l'affiche</h1>
+                        <h1 class="text-primary text-center"><i class="fa fa-film"></i> Films à l'affiche</h1>
 
                         <?php foreach($filmsaffiches as $film){ ?>
                         <div class="panel panel-info panel-dark">
@@ -130,7 +152,7 @@
 
                     <div class="col-md-6" id="filmsattendus"> <!-- Films les plus attendus -->
 
-                        <h1 class="text-warning text-center">Films les plus attendus</h1>
+                        <h1 class="text-primary text-center"><i class="fa fa-film"></i> Films les plus attendus</h1>
                         <?php foreach($filmsattendus as $film){ ?>
 
                             <div class="panel panel-info panel-dark">
