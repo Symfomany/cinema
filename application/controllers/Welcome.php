@@ -77,8 +77,6 @@ class Welcome extends CI_Controller {
         $data['nbcominac'] = $this->comment_model->nbComInac();
         $data['nbcomtotal'] = $this->comment_model->comTotal();
 
-        //user model
-        $data['users'] = $this->user_model->lastUser(); //je stocke
 
 		$this->load->view('index', $data);
 	}
