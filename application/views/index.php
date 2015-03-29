@@ -270,9 +270,13 @@
 
                     </div> <!-- FIN Les catégories -->
 
+
                     <div class="col-md-5"> <!-- DEBUT prochaine séance à lyon -->
                         <h1 class="text-info text-center">Prochaine séance à Lyon</h1>
+
                         <div class="panel panel-info">
+
+                            <?php if(!empty($prochaineseance)){ ?>
                             <div class="panel-heading">
                                 <span class="panel-title"><?php echo $prochaineseance->mtitre; ?></span>
                                 <div class="panel-heading-controls">
@@ -290,6 +294,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php } else { ?>
+                                <div class="panel-body">
+                                    <div class="row">
+                                      <div class="alert alert-danger">Aucune séance de prévue à Lyon</div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div><!-- FIN prochaine séance à lyon -->
 

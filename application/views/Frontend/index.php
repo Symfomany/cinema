@@ -495,7 +495,7 @@
 							<div class="dotted-break">
 								<span></span><span></span><span></span><span></span><span></span>
 							</div>
-							<h2>Olivier Morin</h2>
+							<h2>Boyer JUlien</h2>
 						</div>
 					</div>
 				</header>
@@ -503,9 +503,9 @@
 				<!-- Content -->		
 				<div class="row">
 					<div class="col-xs-12 info">
-						<span class="wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-location-arrow icon"></i> 31 rue Louis Guérin 69100 Villeurbanne </span>
-						<span class="wow fadeInRight" data-wow-delay="0.4s"><i class="fa fa-envelope-o icon"></i> olivier.morin@refreshinformatique.fr</span>
-						<span class="wow fadeInRight" data-wow-delay="0.6s"><i class="fa fa-phone icon"></i>+33(0) 6 12 20 35 39</span>
+						<span class="wow fadeInRight" data-wow-delay="0.2s"><i class="fa fa-location-arrow icon"></i> 26 Rue Emile Decorps </span>
+						<span class="wow fadeInRight" data-wow-delay="0.4s"><i class="fa fa-envelope-o icon"></i> julien@meetserius.com</span>
+						<span class="wow fadeInRight" data-wow-delay="0.6s"><i class="fa fa-phone icon"></i>+33(0) 6 74 58 56 48</span>
 					</div>
 					<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 						<form role="form" data-parsley-validate>
