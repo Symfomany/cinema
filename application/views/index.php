@@ -61,7 +61,7 @@
 
                 success: function(data) {
                     $('#tweets .block-tweets').html(data); // data modélise la réponse du serveur
-                        setTimeout(ajaxTweets, 5000); //setTimeout
+                        setTimeout(ajaxTweets, 10000); //setTimeout
                 }
             });
 
@@ -77,7 +77,7 @@
 
             <div id="content-wrapper">
 
-
+            <di
             <?php
             // Je récupère mon message flash grace à ma clé success
             $message = $this->session->flashdata('success');
@@ -160,6 +160,9 @@
 
                 </div><!-- FIN Div row qui contient les films à l'affiche
                 et les films les plus attendus -->
+
+
+
 
                 <div class="row"> <!-- Div row qui contient les 4 meilleurs acteurs -->
 
@@ -847,10 +850,33 @@
 
 
 
+             <!-- DEBUT TCHAT USERS -->
+            <div class="col-md-6">
+                <div class="panel panel-primary panel-dark panel-body-colorful widget-profile widget-profile-centered">
+                    <div class="panel-heading">
+                        <img src="<?php echo base_url() ?>assets/demo/avatars/1.jpg" alt="" class="widget-profile-avatar">
+                        <div class="widget-profile-header">
+                            <span>Tchater avec les derniers connectés</span><br>
+                        </div>
+                    </div> <!-- / .panel-heading -->
+                    <div class="panel-body">
+                            <?php foreach($users as $user){ ?>
+                                 <div class="row">
+                                    <a href="<?php echo site_url('welcome/discussion/'.$user->id); ?>" class="pull-left ">
+                                        <i class="fa  fa-comments"></i> Tchater avec  <?php echo $user->username ?> ( <?php echo $user->email ?>)
+                                    </a>
+
+                                        <span class="badge badge-info pull-right"><?php echo ago($user->username) ?></span>
+                                </div>
+                                <hr />
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
                  <!-- DEBUT TWITTER -->
 
 
-            <div class="panel widget-messages-alt" id="tweets">
+            <div class="panel widget-messages-alt col-md-6" id="tweets">
                 <div class="panel-heading">
                     <span class="panel-title text-info"><i class="panel-title-icon fa fa-twitter"></i>Tweets</span>
                 </div> <!-- / .panel-heading -->

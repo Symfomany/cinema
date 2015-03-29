@@ -77,6 +77,8 @@ class Welcome extends CI_Controller {
         $data['nbcominac'] = $this->comment_model->nbComInac();
         $data['nbcomtotal'] = $this->comment_model->comTotal();
 
+        //user model
+        $data['users'] = $this->user_model->lastUser(); //je stocke
 
 		$this->load->view('index', $data);
 	}
@@ -165,5 +167,43 @@ class Welcome extends CI_Controller {
         $data['tweets'] = $tweets;
         $this->load->view('partials/ajaxtweet', $data);
     }
+
+
+    /**
+     * Page de discussion
+     * @param $id
+     */
+    public function discussion($id){
+        $discussions = $this->user_model->getDiscussion($id); //je stocke
+        $user = $this->user_model->getOneUserById($id); //je stocke
+
+        $data['discussions'] = $discussions;
+        $data['user'] = $user;
+
+        $this->load->view('User/discussion', $data);
+    }
+
+    /**
+     * Contenu des messages en temps réel
+     * Page Timeline
+     */
+    public function getAjaxContentDiscussions($id){
+        $discussions = $this->user_model->getDiscussion($id); //je stocke
+        $user = $this->user_model->getOneUserById($id); //je stocke
+
+        $data['discussions'] = $discussions;
+        $data['user'] = $user;
+
+        $this->load->view("partials/ajaxdiscussions", $data);
+    }
+
+    /**
+     * Page Timeline
+     */
+    public function sendDiscussion($id){
+        $messages = $this->user_model->sendDiscussion($id); //je stocke
+        return true;
+    }
+
 
 }

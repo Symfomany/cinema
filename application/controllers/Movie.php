@@ -22,12 +22,8 @@
 		public function lister(){
 
             // $data est mon transporteur de données (tableau )
-
-
             $data['movies'] = $this->movie_model->allMovies();
 
-            // Je commente ci-dessous car on appelle la requete avec la pagination
-           // $data['filmscat'] = $this->movie_model->allMoviesCat();
 
 
             //PAGINATION
@@ -108,7 +104,6 @@
 
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
-
 
 
             $data['categoriesform'] = $this->categorie_model->allCategories();
@@ -288,8 +283,6 @@
 
             $data['directorsfrommovie'] = $this->realisateur_model->getDirectorsFromMovie($id);
 
-
-
             $this->load->view('Movie/voir', $data);
 		}
 
@@ -339,6 +332,8 @@
             redirect('movie/lister');
         }
 
+
+
         /* Moteur de recherche */
 
         public function rechercher() {
@@ -371,26 +366,40 @@
         }
 
 
+        /**
+         * Augmenter la quantité du panier
+         * @param $id
+         */
         public function augmenter($id){
             $this->panier->augmenter($id);
             $this->session->set_flashdata('success', 'La quantité a bien été augmentée');
             redirect('movie/recapitulatif');
         }
 
-
+        /**
+         * Diminuer la quantité du panier
+         * @param $id
+         */
         public function diminuer($id){
             $this->panier->diminuer($id);
             $this->session->set_flashdata('success', 'La quantité a bien été diminuée');
             redirect('movie/recapitulatif');
         }
 
+        /**
+         * Supprimer un film de mon panier
+         * @param $id
+         */
         public function removecart($id){
             $this->panier->deletePanier($id);
             $this->session->set_flashdata('success', 'Votre film a bien été suprimmer du panier');
             redirect('movie/recapitulatif');
         }
 
-
+        /**
+         * Ajouter un film à mon panier
+         * @param $id
+         */
         public function addCart($id){
             $this->panier->insertPanier($id);
             $this->session->set_flashdata('success', 'Votre film a bien été ajouter au panier');

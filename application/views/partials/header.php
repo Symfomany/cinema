@@ -99,7 +99,7 @@
             
             <?php $user  = $this->session->userdata('user'); ?>
             <div>
-            
+
             <ul class="nav navbar-nav">
                 <?php if(!empty($user)){ ?>
                     <li <?php if (uri_string() == 'welcome/index') { ?>class="active" <?php } ?>>

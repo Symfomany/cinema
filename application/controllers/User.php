@@ -26,6 +26,8 @@ class User extends CI_Controller {
         $this->load->view('User/lister', $data);
     }
 
+
+
     public function creer(){
 
 
@@ -214,5 +216,7 @@ class User extends CI_Controller {
 
         $this->load->view('User/voir', $data);
     }
+
+
 
 }

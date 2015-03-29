@@ -6,11 +6,12 @@
 <div id="content-wrapper">
 
 
+    <h3><span class="fa fa-power-off"></span> Connexion à l'administration</h3>
 
 
     <form action="<?php echo site_url('welcome/login'); ?>" method="post" class="panel form-horizontal" >
         <div class="panel-heading">
-            <span class="panel-title"><span class="fa fa-power-off"></span> Connexion</span>
+            <span class="panel-title"><span class="fa fa-power-off"></span> Authentification</span>
             <?php if(isset($error)) { ?>
                 <div class="alert alert-warning alert-dark"><?php echo $error; ?></div>
             <?php } ?>
@@ -40,10 +41,10 @@
 
         </div>
         <div class="panel-footer text-right">
-            <button type="submit" class="btn btn-primary">Connexion</button>
-            <a href="<?php echo $fburl; ?>">
+            <button type="submit" class="btn btn-lg btn-primary"><i class="fa fa-lock"></i> Connexion</button>
+            <!--<a href="<?php echo $fburl; ?>">
                 <img class="img-responsive" src="http://www.kilnandco.com/gallery/var/albums/facebook-login-button.png?m=1375582078" />
-            </a>
+            </a>-->
         </div>
     </form>
 
