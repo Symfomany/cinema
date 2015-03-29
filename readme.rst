@@ -45,9 +45,8 @@ Configurer le fichier application/config/autoload.php
 
 
 
-
 ###################
-AUthor
+Author
 ###################
 
 Boyer Julien
