@@ -2,6 +2,8 @@
 Projet Cinema 3W Academy
 ###################
 
+
+
 Projet pédagogique "fil-rouge" d'une plateforme cinématographique 3W Academy,
 développé sous Boostrap Twitter avec le framework MVC Codeigniter.
 
