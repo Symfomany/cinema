@@ -2,7 +2,7 @@
 Projet Cinema 3W Academy
 ###################
 
-Projet pédagogique "fil-rouge" d'une plateforme cinématographique 3W Academy,
+Projet Fil rouge pédagogique "fil-rouge" d'une plateforme cinématographique 3W Academy,
 développer sous Boostrap Twitter avec le framework MVC Codeignietr
 
 Back-Office:
