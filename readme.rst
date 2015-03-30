@@ -1,5 +1,3 @@
-HELLO
-
 ###################
 Projet Cinema 3W Academy
 ###################
