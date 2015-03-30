@@ -2,8 +2,9 @@
 Projet Cinema 3W Academy
 ###################
 
-Projet Fil rouge pédagogique "fil-rouge" d'une plateforme cinématographique 3W Academy,
-développer sous Boostrap Twitter avec le framework MVC Codeignietr
+Projet Fil-rouge pédagogique sur le développement web d'une plateforme cinématographique 3W Academy,
+développé sous Boostrap Twitter avec le framework MVC Codeigniter.
+
 
 Back-Office:
 http://45.55.153.47/codeigniter
@@ -12,6 +13,8 @@ Mdp: Troiswa_2015
 
 Front-Office:
 http://45.55.153.47/codeigniter/index.php/frontend
+
+
 
 
 ###################
@@ -57,4 +60,4 @@ Boyer Julien
 Connexion Back-Office
 ###################
 
-Projet "fil-rouge" développer ) la 3W Academy Lyon
+Projet "fil-rouge" développé à la 3W Academy Lyon
