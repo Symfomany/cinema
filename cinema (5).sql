@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.6deb1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
--- Généré le :  Dim 29 Mars 2015 à 23:35
--- Version du serveur :  5.5.41-0ubuntu0.14.10.1
--- Version de PHP :  5.5.12-2ubuntu4.3
+-- Client: localhost
+-- Généré le: Mar 31 Mars 2015 à 10:59
+-- Version du serveur: 5.5.41-0ubuntu0.14.04.1
+-- Version de PHP: 5.5.9-1ubuntu4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `cinema`
+-- Base de données: `cinema`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `actors` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `lastname` varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `dob` date DEFAULT NULL,
@@ -39,8 +39,9 @@ CREATE TABLE IF NOT EXISTS `actors` (
   `slug` varchar(300) DEFAULT NULL,
   `recompenses` text CHARACTER SET utf8 COLLATE utf8_bin,
   `date_created` datetime DEFAULT NULL,
-  `date_deleted` datetime DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
+  `date_deleted` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `actors`
@@ -73,7 +74,10 @@ INSERT INTO `actors` (`id`, `firstname`, `lastname`, `dob`, `city`, `image`, `na
 (31, 'Jamie', 'Foxx', '1967-12-13', 'Terell', 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Jamie_Foxx_Django_avp.jpg/240px-Jamie_Foxx_Django_avp.jpg', 'Américain', 'Jamie Foxx est né à Terrell1. Il est le fils de Louise Annette Talley Dixon et Darrell Bishop. Peu de temps après sa naissance, il est adopté puis élevé par les parents adoptifs de sa mère : Esther Marie et Mark Talley2.\r\n\r\nIl étudie dès 5 ans le piano et effectue le plus gros de sa scolarité au collège de San Diego. Il fréquente également le Terrell High School où il joue au football américain au poste de quarterback et rêve d''intégrer les Cowboys de Dallas. Il est le premier joueur universitaire de l''histoire à dépasser les 1 000 yards. Il étudie également la musique à la United States International University', 'Joué dans Ali', NULL, NULL, NULL, NULL),
 (32, 'aaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaa', '2015-03-10', NULL, 'http://localhost/codeigniter/uploads/actors/', 'francais', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaa', NULL, NULL, '2015-03-18 14:44:39', NULL),
 (33, 'bbbbbbbbbbbbbbbbbbbbbbbbb', 'bbbbbbbbbbbbbbbbbbbbbb', '2015-03-04', NULL, 'http://localhost/codeigniter/uploads/actors/', 'francais', 'bbbbbbbbbbbbbbbbbbbbbbbbbb', 'bbbbbbbbbbbbbbbbbbbbbbbbb', NULL, NULL, '2015-03-18 14:51:50', NULL),
-(34, 'ddddd', 'eddd', '2015-03-10', NULL, 'http://localhost/cine/uploads/actors/', 'francais', 'azdazdaz dgu gudguazg du y ga  ugduya gd gazu gudyaz gd', 'zszadada', NULL, NULL, '2015-03-29 11:18:15', NULL);
+(34, 'Louis', 'Magnin ', '2015-11-28', NULL, 'http://45.55.153.47/codeigniter/uploads/actors/', 'francais', 'King of phpi', 'Dieu du php', NULL, NULL, '2015-03-28 07:11:07', NULL),
+(35, 'tvvtvvyv', 'hvgvgyg', '2015-03-28', NULL, 'http://45.55.153.47/codeigniter/uploads/actors/', 'francais', 'Hbhbhbbhhbbhbhbbhhbhb', 'ybybyybhhb', NULL, NULL, '2015-03-28 07:19:07', NULL),
+(36, 'jhggj', 'hgyjg', '2015-03-27', NULL, 'http://45.55.153.47/codeigniter/uploads/actors/', 'francais', 'hvghyugyyugyugyu', 'kjhuihih', NULL, NULL, '2015-03-28 07:21:37', NULL),
+(37, 'Louis 2', 'Magnin2', '2015-03-28', NULL, 'http://45.55.153.47/codeigniter/uploads/actors/', 'francais', 'Phphphphpjpbphovp', 'Ggggggggphp', NULL, NULL, '2015-03-28 07:22:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -83,7 +87,9 @@ INSERT INTO `actors` (`id`, `firstname`, `lastname`, `dob`, `city`, `image`, `na
 
 CREATE TABLE IF NOT EXISTS `actors_movies` (
   `actors_id` int(150) NOT NULL,
-  `movies_id` int(150) NOT NULL
+  `movies_id` int(150) NOT NULL,
+  PRIMARY KEY (`actors_id`,`movies_id`),
+  KEY `movies_id` (`movies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -116,14 +122,15 @@ INSERT INTO `actors_movies` (`actors_id`, `movies_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `album` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `photo` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
   `date_created` datetime NOT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `title` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
-  `file_name` varchar(300) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+  `file_name` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `album`
@@ -132,8 +139,7 @@ CREATE TABLE IF NOT EXISTS `album` (
 INSERT INTO `album` (`id`, `user_id`, `photo`, `date_created`, `description`, `title`, `file_name`) VALUES
 (1, 24, 'http://www.moon-websites.com/blog/wp-content/uploads/2011/09/geek-300x258.jpg', '2015-03-10 05:32:19', 'Voici la description de mon image 1', 'Titre image 1', ''),
 (2, 24, 'http://labo.sperrenoud.net/images/LesArticles/hommeFemmeGeek.jpg', '2014-09-11 08:34:34', 'Voici la description de mon image 2', 'Titre image 2', ''),
-(12, 24, 'http://localhost/codeigniter/uploads/album/24/LD0001195215_25.jpg', '2015-03-25 15:29:43', '<p>aaaaaaaaaaaaaaaaaaa</p>', 'aaaaaaaa', ''),
-(13, 27, 'http://localhost/cine/uploads/album/27/1509786.jpg', '2015-03-29 19:46:06', '<p>kjsqd hqiush dqsuidqsuid huiqsh du</p>', 'kjqdqdq usihdq', '1509786.jpg');
+(12, 24, 'http://localhost/codeigniter/uploads/album/24/LD0001195215_25.jpg', '2015-03-25 15:29:43', '<p>aaaaaaaaaaaaaaaaaaa</p>', 'aaaaaaaa', '');
 
 -- --------------------------------------------------------
 
@@ -142,7 +148,7 @@ INSERT INTO `album` (`id`, `user_id`, `photo`, `date_created`, `description`, `t
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) CHARACTER SET utf32 COLLATE utf32_unicode_ci DEFAULT NULL,
   `description` text CHARACTER SET utf8 COLLATE utf8_bin,
   `slug` varchar(300) DEFAULT NULL,
@@ -154,7 +160,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `root` int(50) DEFAULT NULL,
   `date_created` datetime DEFAULT NULL,
   `date_updated` datetime DEFAULT NULL,
-  `image` varchar(300) NOT NULL
+  `image` varchar(300) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
@@ -182,7 +189,15 @@ INSERT INTO `categories` (`id`, `title`, `description`, `slug`, `parent_id`, `po
 (21, 'Pornographique', 'Films Pornographiques', 'pornograhique', NULL, 13, 1, 0, 2, 21, '2014-05-17 22:52:22', '2014-05-19 20:14:55', 'https://www.actualitte.com/images/news/13646.jpg'),
 (22, 'Romantique', 'Films Romantique', 'romantique', NULL, 14, 1, 0, 2, 22, '2014-05-17 22:52:55', '2014-05-19 20:14:56', 'http://www.linternaute.com/cinema/image_cache/objdbfilm/image/220/21074.jpg'),
 (23, 'Dessin animé', 'Dessins animés', 'dessin-anime', NULL, 15, 1, 0, 2, 23, '2014-05-21 11:36:46', '2014-05-21 11:36:46', 'http://www.linternaute.com/cinema/image_cache/objdbfilm/image/220/54501.jpg'),
-(32, 'Action', 'Tous les films d''action', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 14:28:06', NULL, 'http://localhost/codeigniter/uploads/categories/');
+(32, 'Action', 'Tous les films d''action', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 14:28:06', NULL, 'http://localhost/codeigniter/uploads/categories/'),
+(33, 'Nouvelle cat', 'nouvelle cat description', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 14:34:48', NULL, 'http://localhost/codeigniter/uploads/categories/'),
+(34, 'cccccccccccccccccccccc', 'ccccccccccccccccccccccccccccccc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 14:57:14', NULL, 'http://localhost/codeigniter/uploads/categories/intouchable8.jpg'),
+(36, 'd gdeg df fgg d dfgdf gdfg', ' gdfgffd g dfg fgdf gdfgdfg dfgdfgdd fg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 15:04:05', NULL, 'http://localhost/codeigniter/uploads/categories/iphone-6-martin-hajek-14.jpg'),
+(37, 'abcde', 'gd fgdfg dfg dfg dfgfdgd fg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 15:04:59', NULL, 'http://localhost/codeigniter/uploads/categories/'),
+(38, 'aazzz', 'df fdgdfg dfg dfg dfg dfgdf dfgdfgdfgf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 15:06:20', NULL, ''),
+(39, 'Action3', ' gdfgdfd fgdf dfg dfgdfg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 15:08:16', NULL, ''),
+(40, 'test UPLOAD', 'fggggggggggggggggggggggggggggg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 15:10:50', NULL, 'http://localhost/codeigniter/uploads/categories/new-ipod-touch-32-go-white-silver-generation-5.jpg'),
+(41, 'ret ertret e', 'rt ert retr tr ert erteert', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-18 15:11:20', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -191,11 +206,12 @@ INSERT INTO `categories` (`id`, `title`, `description`, `slug`, `parent_id`, `po
 --
 
 CREATE TABLE IF NOT EXISTS `cinema` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `ville` varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `position` int(50) NOT NULL DEFAULT '0',
-  `date_created` datetime DEFAULT NULL
+  `date_created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
@@ -224,7 +240,9 @@ INSERT INTO `cinema` (`id`, `title`, `ville`, `position`, `date_created`) VALUES
 
 CREATE TABLE IF NOT EXISTS `cinema_movies` (
   `cinemas_id` int(11) NOT NULL,
-  `movies_id` int(11) NOT NULL
+  `movies_id` int(11) NOT NULL,
+  PRIMARY KEY (`cinemas_id`,`movies_id`),
+  KEY `movies_id` (`movies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -254,13 +272,18 @@ INSERT INTO `cinema_movies` (`cinemas_id`, `movies_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `movies_id` int(11) DEFAULT NULL,
   `note` int(11) DEFAULT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `state` int(3) DEFAULT NULL,
-  `date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `movies_id` (`movies_id`),
+  KEY `date_created` (`date_created`),
+  KEY `date_created_2` (`date_created`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
 
 --
@@ -276,7 +299,7 @@ INSERT INTO `comments` (`id`, `user_id`, `movies_id`, `note`, `content`, `state`
 (68, 20, 11, 1, 'J''ai largement préféré le 1er de la série', 2, '2014-07-31 22:00:00'),
 (73, 16, 3, 5, 'Bof Bof ce film', 2, '2014-08-16 22:00:00'),
 (75, 19, 2, 5, 'L''acteur principal est vraiment talentueux', 2, '2014-06-15 22:00:00'),
-(77, 4, 7, 5, 'J''ai trop adoré', 2, '2014-08-17 22:00:00'),
+(77, 4, 7, 5, 'J''ai trop adoré', 0, '2014-08-17 22:00:00'),
 (79, 19, 12, 5, 'Super film.', 2, '2014-08-19 22:00:00'),
 (103, 21, 1, 3, 'lmkhkljhlkjhlkjhkljhlkjhkjlhlkjhlkjhlkj', 2, '2015-03-23 14:11:12'),
 (104, 21, 1, 2, 'jkghkjgkjygkjhgjkgjkggkjgkjhgjkg', NULL, '2015-03-23 14:11:16');
@@ -288,15 +311,16 @@ INSERT INTO `comments` (`id`, `user_id`, `movies_id`, `note`, `content`, `state`
 --
 
 CREATE TABLE IF NOT EXISTS `directors` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `lastname` varchar(250) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `biography` text CHARACTER SET utf8 COLLATE utf8_bin,
   `image` varchar(255) DEFAULT NULL,
   `note` float DEFAULT NULL,
-  `date_created` datetime DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `date_created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `directors`
@@ -304,6 +328,7 @@ CREATE TABLE IF NOT EXISTS `directors` (
 
 INSERT INTO `directors` (`id`, `firstname`, `lastname`, `dob`, `biography`, `image`, `note`, `date_created`) VALUES
 (1, 'Peter', 'Jackson', '1961-10-31', 'Peter Jackson est un réalisateur, un producteur et un scénariste néo-zélandais né le 31 octobre 1961 à Wellington, en Nouvelle-Zélande. Il est surtout connu pour avoir réalisé la trilogie du Seigneur des anneaux, d''après l''œuvre de J. R. R. Tolkien, et un remake de King Kong. Il réalise ensuite Le Hobbit, l''adaptation cinématographique en trois volets du roman de J. R. R. Tolkien.', 'http://cdn11.ne.be/ckContents/images//juillet%202012/peter-jackson.jpeg', NULL, '2014-04-01 00:00:00'),
+(2, 'Julienaaa', 'Boyeraa', '1988-01-01', 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 'http://localhost/codeigniter/uploads/directors/téléchargement1.jpg', 3, '2014-05-17 23:35:20'),
 (3, 'Roland', 'Emmerich', '2014-02-02', '<p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En <a href="http://fr.wikipedia.org/wiki/1977" title="1977" style="color: rgb(11, 0, 128); background-image: none;">1977</a>, il part étudier le cinéma à <a href="http://fr.wikipedia.org/wiki/Munich" title="Munich" style="color: rgb(11, 0, 128); background-image: none;">Munich</a> et réalise son premier <a href="http://fr.wikipedia.org/wiki/Court_m%C3%A9trage" title="Court métrage" style="color: rgb(11, 0, 128); background-image: none;">court métrage</a>, <i>Franzmann</i>, en <a href="http://fr.wikipedia.org/wiki/1979" title="1979" style="color: rgb(11, 0, 128); background-image: none;">1979</a>.</p><p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En <a href="http://fr.wikipedia.org/wiki/1984" title="1984" style="color: rgb(11, 0, 128); background-image: none;">1984</a>, il met en scène le film d''étudiant le plus cher d''Allemagne : <i><a href="http://fr.wikipedia.org/wiki/Le_Principe_de_l%27arche_de_No%C3%A9" title="Le Principe de l''arche de Noé" style="color: rgb(11, 0, 128); background-image: none;">Le Principe de l''arche de Noé</a></i>, qui sera nommé à l''<a href="http://fr.wikipedia.org/wiki/Ours_d%27or_du_meilleur_film" title="Ours d''or du meilleur film" class="mw-redirect" style="color: rgb(11, 0, 128); background-image: none;">Ours d''or du meilleur film</a> au<a href="http://fr.wikipedia.org/wiki/Berlinale" title="Berlinale" style="color: rgb(11, 0, 128); background-image: none;">Festival International du Film de Berlin</a>. En <a href="http://fr.wikipedia.org/wiki/1990" title="1990" style="color: rgb(11, 0, 128); background-image: none;">1990</a>, il part vivre aux <a href="http://fr.wikipedia.org/wiki/%C3%89tats-Unis" title="États-Unis" style="color: rgb(11, 0, 128); background-image: none;">États-Unis</a> où il rencontre son futur associé, le comédien <a href="http://fr.wikipedia.org/wiki/Dean_Devlin" title="Dean Devlin" style="color: rgb(11, 0, 128); background-image: none;">Dean Devlin</a>, sur le tournage de <i>Moon 44</i>. Sa sœur, <a href="http://fr.wikipedia.org/wiki/Ute_Emmerich" title="Ute Emmerich" style="color: rgb(11, 0, 128); background-image: none;">Ute Emmerich</a>, a coproduit la quasi-totalité de ses films sous la bannière de son studio de production <a href="http://fr.wikipedia.org/wiki/Centropolis_Entertainment" title="Centropolis Entertainment" style="color: rgb(11, 0, 128); background-image: none;">Centropolis Entertainment</a>. Dans son pays, l''Allemagne, il est surnommé « <i>Das Spielbergle aus Sindelfingen</i> » soit « Le Petit Spielberg de Sindelfingen », surnom qui met en avant son amour pour le cinéma de divertissement de qualité, et hormis Spielberg. Depuis ses dix-sept ans, il adore des films tels que <i><a href="http://fr.wikipedia.org/wiki/La_Tour_infernale" title="La Tour infernale" style="color: rgb(11, 0, 128); background-image: none;">La Tour infernale</a></i>,<i><a href="http://fr.wikipedia.org/wiki/L%27Aventure_du_Pos%C3%A9idon_(film,_1972)" title="L''Aventure du Poséidon (film, 1972)" class="mw-redirect" style="color: rgb(11, 0, 128); background-image: none;">L''Aventure du Poséidon</a></i> ou <i><a href="http://fr.wikipedia.org/wiki/Tremblement_de_terre_(film)" title="Tremblement de terre (film)" style="color: rgb(11, 0, 128); background-image: none;">Tremblement de terre</a></i>.</p><p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En 1996, après le phénoménal succès d''<i><a href="http://fr.wikipedia.org/wiki/Independence_Day_(film,_1996)" title="Independence Day (film, 1996)" style="color: rgb(11, 0, 128); background-image: none;">Independence Day</a></i>, le studio de la <a href="http://fr.wikipedia.org/wiki/20th_Century_Fox" title="20th Century Fox" style="color: rgb(11, 0, 128); background-image: none;">20th Century Fox</a> lui propose de développer une série autour de la vie extraterrestre, qui donnera naissance à la série <i><a href="http://fr.wikipedia.org/wiki/Le_Visiteur_(s%C3%A9rie_t%C3%A9l%C3%A9vis%C3%A9e)" title="Le Visiteur (série télévisée)" style="color: rgb(11, 0, 128); background-image: none;">Le visiteur</a></i>(<i>The Visitor</i>). Elle sera finalement un échec public et sera arrêtée au bout de 13 épisodes, provoquant le « divorce » momentané entre Roland Emmerich et la <a href="http://fr.wikipedia.org/wiki/20th_Century_Fox" title="20th Century Fox" style="color: rgb(11, 0, 128); background-image: none;">20th Century Fox</a>. Par la suite, il travaillera avec<a href="http://fr.wikipedia.org/wiki/Sony_Pictures" title="Sony Pictures" class="mw-redirect" style="color: rgb(11, 0, 128); background-image: none;">Sony Pictures</a> afin de réaliser <i><a href="http://fr.wikipedia.org/wiki/Godzilla_(film,_1998)" title="Godzilla (film, 1998)" style="color: rgb(11, 0, 128); background-image: none;">Godzilla</a></i> (en réponse à la reprise des essais nucléaires dans le Pacifique par Jacques Chirac en 1995). Ce petit succès lui donnera encore une fois la joie de réaliser une série mais cette fois-ci directement liée à son dernier film avec la série animée <i><a href="http://fr.wikipedia.org/wiki/Godzilla_:_La_S%C3%A9rie" title="Godzilla : La Série" class="mw-redirect" style="color: rgb(11, 0, 128); background-image: none;">Godzilla : La Série</a></i>, où la bête deviendra l''allié des humains pour lutter contre d''horribles créatures. Afin de se relancer après le semi-échec de <i>Godzilla</i>, il décide de se séparer de son comparse Dean Devlin et coproduit son prochain film <i><a href="http://fr.wikipedia.org/wiki/The_Patriot" title="The Patriot" style="color: rgb(11, 0, 128); background-image: none;">The Patriot</a></i> avec le réputé <a href="http://fr.wikipedia.org/wiki/Mark_Gordon" title="Mark Gordon" style="color: rgb(11, 0, 128); background-image: none;">Mark Gordon</a> à partir d''un scénario de <a href="http://fr.wikipedia.org/wiki/Robert_Rodat" title="Robert Rodat" style="color: rgb(11, 0, 128); background-image: none;">Robert Rodat</a>. On y découvrira au côté de <a href="http://fr.wikipedia.org/wiki/Mel_Gibson" title="Mel Gibson" style="color: rgb(11, 0, 128); background-image: none;">Mel Gibson</a>, le jeune acteur australien <a href="http://fr.wikipedia.org/wiki/Heath_Ledger" title="Heath Ledger" style="color: rgb(11, 0, 128); background-image: none;">Heath Ledger</a>. En 2001, Roland Emmerich réalise sa première publicité pour <a href="http://fr.wikipedia.org/wiki/Daimler_AG" title="Daimler AG" class="mw-redirect" style="color: rgb(11, 0, 128); background-image: none;">DaimlerChrysler</a>.</p><p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">Roland Emmerich aime s''entourer de professionnels qu''il connaît bien. Il aura proposé au franco-grec <a href="http://fr.wikipedia.org/wiki/Patrick_Tatopoulos" title="Patrick Tatopoulos" style="color: rgb(11, 0, 128); background-image: none;">Patrick Tatopoulos</a> de faire ses armes sur nombre de ces films comme <i><a href="http://fr.wikipedia.org/wiki/Stargate,_la_porte_des_%C3%A9toiles" title="Stargate, la porte des étoiles" style="color: rgb(11, 0, 128); background-image: none;">Stargate, la porte des étoiles</a></i>,<i><a href="http://fr.wikipedia.org/wiki/Independence_Day_(film,_1996)" title="Independence Day (film, 1996)" style="color: rgb(11, 0, 128); background-image: none;">Independence Day</a></i>, <i><a href="http://fr.wikipedia.org/wiki/Godzilla_(film,_1998)" title="Godzilla (film, 1998)" style="color: rgb(11, 0, 128); background-image: none;">Godzilla</a></i> (en ayant l''aval de la Toho) ou <i><a href="http://fr.wikipedia.org/wiki/10_000_(film)" title="10 000 (film)" style="color: rgb(11, 0, 128); background-image: none;">10,000 BC</a></i>. Ce dernier est devenu depuis un pilier des effets visuels sur de nombreux films hollywoodiens tels <i><a href="http://fr.wikipedia.org/wiki/I,_Robot_(film)" title="I, Robot (film)" style="color: rgb(11, 0, 128); background-image: none;">I, Robot</a></i>, <i><a href="http://fr.wikipedia.org/wiki/Dark_City" title="Dark City" style="color: rgb(11, 0, 128); background-image: none;">Dark City</a></i>, <i>Underworld</i> ou<i>Die Hard 4</i>, il aura aussi gagné son pari de réaliser son premier long-métrage grâce à un autre ami, <a href="http://fr.wikipedia.org/wiki/Len_Wiseman" title="Len Wiseman" style="color: rgb(11, 0, 128); background-image: none;">Len Wiseman</a>, avec la préquelle <i><a href="http://fr.wikipedia.org/wiki/Underworld_3" title="Underworld 3" style="color: rgb(11, 0, 128); background-image: none;">Underworld 3 : Le Soulèvement des Lycans</a></i>. Côté musique, <a href="http://fr.wikipedia.org/wiki/David_Arnold" title="David Arnold" style="color: rgb(11, 0, 128); background-image: none;">David Arnold</a>aura brillé sur les bandes originales de <i>Independence day</i> ou <i>Godzilla</i>, et <a href="http://fr.wikipedia.org/wiki/Harald_Kloser" title="Harald Kloser" style="color: rgb(11, 0, 128); background-image: none;">Harald Kloser</a> aura eu sa chance avec <i>Le Jour d''après</i>, ce dernier, tout en restant compositeur de la bande originale de <i>10,000 BC</i>est aussi devenu coscénariste de ce film.</p>', 'rolandemmerich.jpg', 3, '2014-05-17 23:43:03'),
 (4, 'Andrew', 'Garfield', NULL, '<p><b style=', '497px-Andrew_Garfield_by_Gage_Skidmore.jpg', 3, '2014-05-17 23:45:44'),
 (5, 'Marc', 'Webb', NULL, '<p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">Marc Webb voit le jour le 31 août 1974 d''un père mathématicien et d''une mère biologiste. Ce fils d''éminences grises ne présente pas un intérêt réel pour les études qui s''éternisent. Il finit à peine un semestre au Colorado College qu''il reporte son attention ailleurs.</p><p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">L''ancien de l''Art Center se tourne très vite vers le tournage de vidéos et il multiplie les expériences en planchant sur divers projets. Il tourne un documentaire sur la musique intitulé « Hype! » en 1996 avant de signer « My star » des Shame Idols, son tout premier clip, deux ans plus tard.</p><p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">D''autres noms de la musique lui feront par la suite confiance. De <a href="http://fr.wikipedia.org/wiki/Daniel_Powter" title="Daniel Powter" style="color: rgb(11, 0, 128); background-image: none;">Daniel Powter</a> à <a href="http://fr.wikipedia.org/wiki/Evanescence" title="Evanescence" style="color: rgb(11, 0, 128); background-image: none;">Evanescence</a>, en passant par <a href="http://fr.wikipedia.org/wiki/My_Chemical_Romance" title="My Chemical Romance" style="color: rgb(11, 0, 128); background-image: none;">My Chemical Romance</a> et même <a href="http://fr.wikipedia.org/wiki/Lenny_Kravitz" title="Lenny Kravitz" style="color: rgb(11, 0, 128); background-image: none;">Lenny Kravitz</a>, tous se laissent convaincre par le concentré d''images ultra-colorées et les effets très spéciaux dont Marc Webb a le secret.</p>', '220px-Marc_Webb_by_Gage_Skidmore.jpg', 4, '2014-05-17 23:46:50'),
@@ -314,7 +339,10 @@ INSERT INTO `directors` (`id`, `firstname`, `lastname`, `dob`, `biography`, `ima
 (10, 'James', 'Mangold', '1963-12-16', 'Walk the Line est un film biographique sur le chanteur Johnny Cash. En 2008, il tourne 3 h 10 pour Yuma qui est le remake de 3 h 10 pour Yuma réalisé par Delmer Daves en 1957.\r\n\r\nEn Juin 2011, James Mangold est choisi par Hugh Jackman et la Fox pour réaliser le film The Wolverine à la place de Darren Aronofsky, après que celui-ci eut choisi de quitter le projet qui lui avait été attribué huit mois plus tôt.', 'http://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/James_Mangold.JPG/220px-James_Mangold.JPG', NULL, NULL),
 (11, 'Gareth', 'Edwards', '1975-01-01', 'Gareth Edwards est né en 1975 en Angleterre, à Nuneaton dans le Warwickshire. Dès sa plus tendre enfance, il désira travailler à la réalisation de ses propres films.\r\n\r\nIl fait tout d''abord ses armes en créant des effets spéciaux pour une série à gros budget réalisée par la BBC, Attila the Hun (2008). Cette production nécessita la réalisation de 250 effets visuels (Notamment avec Paul Bryers). Grâce à cela, Edwards commença à acquérir une reconnaissance internationale. Il présenta son travail au festival anglais Sci-Fi-London. L''objectif de ce festival est de réaliser un film avec des contraintes de temps (48 heures) et de moyens (un seul acteur). Gareth Edwards remporta ce festival en 20083.\r\n\r\nGareth Edwards est ensuite choisi pour mettre en scène une plus grosse production, Godzilla, qui sort en 2014. Le film est un succès au box-office mondial après 93 188 384 $ de dollars de recettes pour son premier week-end d''exploitation nord-américaine4.\r\n\r\nEn mai 2014, il est révélé qu''il sera le réalisateur d''un film dérivé de la saga Star Wars, prévu pour décembre 20165.', 'http://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Gareth_Edwards_by_Gage_Skidmore.jpg/220px-Gareth_Edwards_by_Gage_Skidmore.jpg', NULL, NULL),
 (12, 'Quentin', 'Tarantino', '1963-03-27', 'Quentin Tarantino, né le 27 mars 1963 à Knoxville dans le Tennessee, est un réalisateur, scénariste, producteur et acteur américain. Il se fait connaître en tant que réalisateur de films indépendants avec ses deux premiers films, Reservoir Dogs (1992) et Pulp Fiction (1994) et a remporté pour ce dernier la Palme d''or à Cannes.\n\nL''œuvre de Tarantino dénote une connaissance encyclopédique du cinéma.', 'http://montre24.com/postimg1/Quentin-Tarantino.jpg', NULL, NULL),
-(13, 'Salles', 'Nicolas', NULL, 'Develloper de l''extreme xxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxx', NULL, NULL);
+(13, 'Salles', 'Nicolas', NULL, 'Develloper de l''extreme xxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxx', NULL, NULL),
+(14, 'aaaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaa', '2015-01-13', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'http://localhost/codeigniter/uploads/directors/téléchargement2.jpg', NULL, '2015-03-18 14:50:53'),
+(15, 'qsdqsdqsd', 'test', '2015-03-26', 'sqdqdqdqdsqdqs', 'http://45.55.153.47/codeigniter/uploads/directors/302517-apple-ipod-touch-2012.jpg', NULL, '2015-03-28 07:22:23'),
+(16, 'bgcgchhtc', 'jhghfhhy', '2015-03-27', 'Gfcgfcchtchtcytchtchgchgchghg', 'http://45.55.153.47/codeigniter/uploads/directors/14275417955401838236236.jpg', NULL, '2015-03-28 07:23:14');
 
 -- --------------------------------------------------------
 
@@ -324,7 +352,9 @@ INSERT INTO `directors` (`id`, `firstname`, `lastname`, `dob`, `biography`, `ima
 
 CREATE TABLE IF NOT EXISTS `directors_movies` (
   `directors_id` int(11) NOT NULL,
-  `movies_id` int(11) NOT NULL
+  `movies_id` int(11) NOT NULL,
+  PRIMARY KEY (`directors_id`,`movies_id`),
+  KEY `movies_id` (`movies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -340,6 +370,7 @@ INSERT INTO `directors_movies` (`directors_id`, `movies_id`) VALUES
 (7, 7),
 (7, 11),
 (10, 12),
+(2, 13),
 (8, 14);
 
 -- --------------------------------------------------------
@@ -375,7 +406,11 @@ INSERT INTO `discussions` (`id`, `users_from`, `users_to`, `content`, `date_crea
 (13, 20, 19, 'coucou', '2015-03-28 11:50:14'),
 (14, 20, 19, 'sa va??.', '2015-03-28 11:50:17'),
 (15, 19, 20, 'oui et toi??', '2015-03-28 11:50:23'),
-(0, 27, 24, 'Test :)', '2015-03-29 22:48:19');
+(0, 27, 24, 'hello', '2015-03-30 16:11:54'),
+(0, 27, 24, 'hello', '2015-03-30 16:12:49'),
+(0, 27, 24, 'sa va??', '2015-03-30 16:12:56'),
+(0, 27, 24, 'coucou lulu :)', '2015-03-30 16:13:04'),
+(0, 27, 24, 'coucou', '2015-03-30 16:13:09');
 
 -- --------------------------------------------------------
 
@@ -384,11 +419,12 @@ INSERT INTO `discussions` (`id`, `users_from`, `users_to`, `content`, `date_crea
 --
 
 CREATE TABLE IF NOT EXISTS `medias` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `movies_id` int(11) DEFAULT NULL,
   `nature` int(11) DEFAULT NULL,
   `picture` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `video` text CHARACTER SET utf8 COLLATE utf8_bin
+  `video` text CHARACTER SET utf8 COLLATE utf8_bin,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
@@ -415,7 +451,7 @@ INSERT INTO `medias` (`id`, `movies_id`, `nature`, `picture`, `video`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `movies` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type_film` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `synopsis` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
@@ -444,7 +480,9 @@ CREATE TABLE IF NOT EXISTS `movies` (
   `taxe` float DEFAULT NULL,
   `shop_mode` int(11) DEFAULT NULL,
   `shop_type_dvd` int(11) DEFAULT NULL,
-  `shop_date` date DEFAULT NULL
+  `shop_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categories_id` (`categories_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
@@ -467,7 +505,8 @@ INSERT INTO `movies` (`id`, `type_film`, `title`, `synopsis`, `description`, `im
 (29, NULL, 'Hulk 2003', 'Au cours d''une opération scientifique qui a mal tourné, le docteur Bruce Banner est exposé à une surdose de radiations nucléaires. Miraculeusement indemne, il sort néanmoins affecté de cette douloureuse expérience et développe le pouvoir de se transformer en Hulk, un monstre vert à la force surhumaine et à la rage incontrôlable. Cette créature ne se manifeste que lorsque ce dernier est soumis à une intense émotion.\nAu cours d''une opération scientifique qui a mal tourné, le docteur Bruce Banner est exposé à une surdose de radiations nucléaires. Miraculeusement indemne, il sort néanmoins affecté de cette douloureuse expérience et développe le pouvoir de se transformer en Hulk, un monstre vert à la force surhumaine et à la rage incontrôlable. Cette créature ne se manifeste que lorsque ce dernier est soumis à une intense émotion.', 'Au cours d''une opération scientifique qui a mal tourné, le docteur Bruce Banner est exposé à une surdose de radiations nucléaires. Miraculeusement indemne, il sort néanmoins affecté de cette douloureuse expérience et développe le pouvoir de se transformer en Hulk, un monstre vert à la force surhumaine et à la rage incontrôlable. Cette créature ne se manifeste que lorsque ce dernier est soumis à une intense émotion.', 'https://karlails.files.wordpress.com/2012/01/hulk-2003.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 22, NULL, NULL, NULL, 0, 0, 0, 0, 0, NULL),
 (30, NULL, 'Iron man 2', NULL, NULL, 'http://fr.web.img2.acsta.net/medias/nmedia/18/70/45/28/19408942.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, 0, NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (31, NULL, 'Bob l''éponge - Le film : Un héros sort de l''eau', 'Tout baigne à Bikini Bottom pour Bob l’éponge, l’éternel optimiste et ses amis: Patrick l’étoile de mer fidèle, Carlo le calamar égoïste, Sandy l’écureuil et Monsieur Krabs, le crustacé obsédé par l’argent!', 'Tout baigne à Bikini Bottom pour Bob l’éponge, l’éternel optimiste et ses amis: Patrick l’étoile de mer fidèle, Carlo le calamar égoïste, Sandy l’écureuil et Monsieur Krabs, le crustacé obsédé par l’argent!\r\nCependant tout bascule quand la recette du pâté de crabe est volée par le diabolique pirate Steak Barbare (et les mouettes qui ne le quittent jamais…) ! Pour sauver leur monde, Bob et ses amis vont unir leurs forces (avec l’aide de Plankton, l’ennemi de toujours !) et débarquer dans le nôtre ! Transformés en super-héros, ils vont apprendre à maîtriser leurs super-pouvoirs, mais … ça va faire des vagues !', 'http://www.paramountpictures.fr/wp-content/uploads/2013/08/BOB-LEPONGE-Bob.jpg', '<iframe src="https://www.youtube.com/embed/PWnayZDOAps" frameborder="0" allowfullscreen></iframe>', 23, 'fr', 'Warner_bros', 'vf', 2015, 900000, NULL, '2015-02-18', 4, 0, 1, NULL, NULL, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(35, NULL, 'Django', '<p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En <a href="http://fr.wikipedia.org/wiki/1858" title="1858" style="color: rgb(11, 0, 128); background-image: none;">1858</a>, dans le <a href="http://fr.wikipedia.org/wiki/Sud_des_%C3%89tats-Unis" title="Sud des États-Unis" style="color: rgb(11, 0, 128); background-image: none;">Sud américain</a>, deux ans avant le début de la <a href="http://fr.wikipedia.org/wiki/Guerre_de_S%C3%A9cession" title="Guerre de Sécession" style="color: rgb(11, 0, 128); background-image: none;">guerre de Sécession</a><span id="cite_ref-2" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-2" style="color: rgb(11, 0, 128); background-image: none;">2</a></span>, un dentiste allemand reconverti en <a href="http://fr.wikipedia.org/wiki/Chasseur_de_primes" title="Chasseur de primes" style="color: rgb(11, 0, 128); background-image: none;">chasseur de primes</a>, le <abbr class="abbr" title="Docteur" style="color: inherit; border-bottom-width: 0px;">D<sup style="line-height: 1em;">r</sup></abbr> King Schultz, libère Django, un <a href="http://fr.wikipedia.org/wiki/Esclavage_aux_%C3%89tats-Unis" title="Esclavage aux États-Unis" style="color: rgb(11, 0, 128); background-image: none;">esclave</a>, et le forme afin de lui permettre de l''assister dans une mission, puis, pour le remercier, décide de l''aider à libérer sa femme des mains de Calvin Candie, un riche et impitoyable propriétaire terrien du <a href="http://fr.wikipedia.org/wiki/%C3%89tat_du_Mississippi" title="État du Mississippi" style="color: rgb(11, 0, 128); background-image: none;">Mississippi</a><span id="cite_ref-branchez_3-0" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-branchez-3" style="color: rgb(11, 0, 128); background-image: none;">3</a></span>.</p><div><br></div>', '<p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En <a href="http://fr.wikipedia.org/wiki/1858" title="1858" style="color: rgb(11, 0, 128); background-image: none;">1858</a>, dans le <a href="http://fr.wikipedia.org/wiki/Sud_des_%C3%89tats-Unis" title="Sud des États-Unis" style="color: rgb(11, 0, 128); background-image: none;">Sud américain</a>, deux ans avant le début de la <a href="http://fr.wikipedia.org/wiki/Guerre_de_S%C3%A9cession" title="Guerre de Sécession" style="color: rgb(11, 0, 128); background-image: none;">guerre de Sécession</a><span id="cite_ref-2" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-2" style="color: rgb(11, 0, 128); background-image: none;">2</a></span>, un dentiste allemand reconverti en <a href="http://fr.wikipedia.org/wiki/Chasseur_de_primes" title="Chasseur de primes" style="color: rgb(11, 0, 128); background-image: none;">chasseur de primes</a>, le <abbr class="abbr" title="Docteur" style="color: inherit; border-bottom-width: 0px;">D<sup style="line-height: 1em;">r</sup></abbr> King Schultz, libère Django, un <a href="http://fr.wikipedia.org/wiki/Esclavage_aux_%C3%89tats-Unis" title="Esclavage aux États-Unis" style="color: rgb(11, 0, 128); background-image: none;">esclave</a>, et le forme afin de lui permettre de l''assister dans une mission, puis, pour le remercier, décide de l''aider à libérer sa femme des mains de Calvin Candie, un riche et impitoyable propriétaire terrien du <a href="http://fr.wikipedia.org/wiki/%C3%89tat_du_Mississippi" title="État du Mississippi" style="color: rgb(11, 0, 128); background-image: none;">Mississippi</a><span id="cite_ref-branchez_3-0" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-branchez-3" style="color: rgb(11, 0, 128); background-image: none;">3</a></span>.</p><div><br></div>', 'http://localhost/codeigniter/uploads/movies/intouchable4.jpg', '<iframe src="//www.youtube.com/embed/eUdM9vrCbow?rel=0" frameborder="0" allowfullscreen=""></iframe>', 1, NULL, 'Century_Fox', '', 2014, 8888890000000, NULL, '2014-05-02', NULL, 1, 1, NULL, NULL, NULL, '2015-03-16 16:56:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(35, NULL, 'Django', '<p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En <a href="http://fr.wikipedia.org/wiki/1858" title="1858" style="color: rgb(11, 0, 128); background-image: none;">1858</a>, dans le <a href="http://fr.wikipedia.org/wiki/Sud_des_%C3%89tats-Unis" title="Sud des États-Unis" style="color: rgb(11, 0, 128); background-image: none;">Sud américain</a>, deux ans avant le début de la <a href="http://fr.wikipedia.org/wiki/Guerre_de_S%C3%A9cession" title="Guerre de Sécession" style="color: rgb(11, 0, 128); background-image: none;">guerre de Sécession</a><span id="cite_ref-2" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-2" style="color: rgb(11, 0, 128); background-image: none;">2</a></span>, un dentiste allemand reconverti en <a href="http://fr.wikipedia.org/wiki/Chasseur_de_primes" title="Chasseur de primes" style="color: rgb(11, 0, 128); background-image: none;">chasseur de primes</a>, le <abbr class="abbr" title="Docteur" style="color: inherit; border-bottom-width: 0px;">D<sup style="line-height: 1em;">r</sup></abbr> King Schultz, libère Django, un <a href="http://fr.wikipedia.org/wiki/Esclavage_aux_%C3%89tats-Unis" title="Esclavage aux États-Unis" style="color: rgb(11, 0, 128); background-image: none;">esclave</a>, et le forme afin de lui permettre de l''assister dans une mission, puis, pour le remercier, décide de l''aider à libérer sa femme des mains de Calvin Candie, un riche et impitoyable propriétaire terrien du <a href="http://fr.wikipedia.org/wiki/%C3%89tat_du_Mississippi" title="État du Mississippi" style="color: rgb(11, 0, 128); background-image: none;">Mississippi</a><span id="cite_ref-branchez_3-0" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-branchez-3" style="color: rgb(11, 0, 128); background-image: none;">3</a></span>.</p><div><br></div>', '<p style="margin-top: 0.5em; margin-bottom: 0.5em; line-height: 22.399999618530273px; color: rgb(37, 37, 37); font-family: sans-serif; font-size: 14px;">En <a href="http://fr.wikipedia.org/wiki/1858" title="1858" style="color: rgb(11, 0, 128); background-image: none;">1858</a>, dans le <a href="http://fr.wikipedia.org/wiki/Sud_des_%C3%89tats-Unis" title="Sud des États-Unis" style="color: rgb(11, 0, 128); background-image: none;">Sud américain</a>, deux ans avant le début de la <a href="http://fr.wikipedia.org/wiki/Guerre_de_S%C3%A9cession" title="Guerre de Sécession" style="color: rgb(11, 0, 128); background-image: none;">guerre de Sécession</a><span id="cite_ref-2" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-2" style="color: rgb(11, 0, 128); background-image: none;">2</a></span>, un dentiste allemand reconverti en <a href="http://fr.wikipedia.org/wiki/Chasseur_de_primes" title="Chasseur de primes" style="color: rgb(11, 0, 128); background-image: none;">chasseur de primes</a>, le <abbr class="abbr" title="Docteur" style="color: inherit; border-bottom-width: 0px;">D<sup style="line-height: 1em;">r</sup></abbr> King Schultz, libère Django, un <a href="http://fr.wikipedia.org/wiki/Esclavage_aux_%C3%89tats-Unis" title="Esclavage aux États-Unis" style="color: rgb(11, 0, 128); background-image: none;">esclave</a>, et le forme afin de lui permettre de l''assister dans une mission, puis, pour le remercier, décide de l''aider à libérer sa femme des mains de Calvin Candie, un riche et impitoyable propriétaire terrien du <a href="http://fr.wikipedia.org/wiki/%C3%89tat_du_Mississippi" title="État du Mississippi" style="color: rgb(11, 0, 128); background-image: none;">Mississippi</a><span id="cite_ref-branchez_3-0" class="reference" style="line-height: 1em; vertical-align: text-top; position: relative; font-size: 0.8em; top: -5px; padding-left: 1px; unicode-bidi: -webkit-isolate; white-space: nowrap;"><a href="http://fr.wikipedia.org/wiki/Django_Unchained#cite_note-branchez-3" style="color: rgb(11, 0, 128); background-image: none;">3</a></span>.</p><div><br></div>', 'http://localhost/codeigniter/uploads/movies/intouchable4.jpg', '<iframe src="//www.youtube.com/embed/eUdM9vrCbow?rel=0" frameborder="0" allowfullscreen=""></iframe>', 1, NULL, 'Century_Fox', '', 2014, 8888890000000, NULL, '2014-05-02', NULL, 1, 1, NULL, NULL, NULL, '2015-03-16 16:56:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(36, NULL, 'Aaaaaaaaaaaaa', '5555555555555555555555555555', '555555555555555555555555555555', 'http://localhost/codeigniter/uploads/movies/intouchable8.jpg', '55555555555555555555555555', 0, NULL, NULL, '', 2012, 555556000000000, NULL, '2015-03-04', NULL, 0, NULL, NULL, NULL, NULL, '2015-03-18 14:46:07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -477,7 +516,9 @@ INSERT INTO `movies` (`id`, `type_film`, `title`, `synopsis`, `description`, `im
 
 CREATE TABLE IF NOT EXISTS `related_movies` (
   `movies_id` int(11) NOT NULL,
-  `movies_id_related` int(11) NOT NULL
+  `movies_id_related` int(11) NOT NULL,
+  PRIMARY KEY (`movies_id`,`movies_id_related`),
+  KEY `movies_id_related` (`movies_id_related`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -524,11 +565,15 @@ INSERT INTO `related_movies` (`movies_id`, `movies_id_related`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sessions` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `movies_id` int(11) DEFAULT NULL,
   `cinema_id` int(11) DEFAULT NULL,
-  `date_session` datetime DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+  `date_session` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `movies_id` (`movies_id`),
+  KEY `movies_id_2` (`movies_id`),
+  KEY `cinema_id` (`cinema_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `sessions`
@@ -539,12 +584,13 @@ INSERT INTO `sessions` (`id`, `movies_id`, `cinema_id`, `date_session`) VALUES
 (2, 1, 1, '2013-12-13 06:42:41'),
 (3, 31, 1, '2010-08-17 05:34:00'),
 (4, 1, 1, '2012-10-11 04:44:31'),
-(7, 13, 8, '2015-07-16 15:54:00'),
+(7, 13, 8, '2015-03-13 15:54:00'),
 (9, 1, 1, '2015-02-11 11:59:00'),
 (10, 2, 11, '2013-12-12 19:00:00'),
 (11, 31, 1, '2011-09-11 11:59:00'),
 (12, 3, 1, '2015-01-16 11:59:00'),
-(13, 1, 1, '2012-06-06 03:34:15');
+(13, 1, 1, '2012-06-06 03:34:15'),
+(14, 2, 8, '2015-04-15 16:44:00');
 
 -- --------------------------------------------------------
 
@@ -553,9 +599,10 @@ INSERT INTO `sessions` (`id`, `movies_id`, `cinema_id`, `date_session`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sessions_user` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `session_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
@@ -572,8 +619,9 @@ INSERT INTO `sessions_user` (`id`, `session_id`, `user_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tags` (
-`id` int(11) NOT NULL,
-  `word` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `word` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
@@ -597,7 +645,9 @@ INSERT INTO `tags` (`id`, `word`) VALUES
 
 CREATE TABLE IF NOT EXISTS `tags_movies` (
   `movies_id` int(11) NOT NULL,
-  `tags_id` int(11) NOT NULL
+  `tags_id` int(11) NOT NULL,
+  PRIMARY KEY (`movies_id`,`tags_id`),
+  KEY `tags_id` (`tags_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -624,7 +674,7 @@ INSERT INTO `tags_movies` (`movies_id`, `tags_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `avatar` varchar(255) NOT NULL,
   `is_admin` tinyint(4) DEFAULT '0',
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
@@ -666,7 +716,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   `lastActivity` datetime DEFAULT NULL,
-  `Description` text NOT NULL
+  `Description` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8D93D64992FC23A8` (`username_canonical`),
+  UNIQUE KEY `UNIQ_8D93D649A0D96FBF` (`email_canonical`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
@@ -674,8 +727,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `avatar`, `is_admin`, `email`, `username`, `password`, `ville`, `zipcode`, `tel`, `ip`, `enabled`, `last_login`, `expired`, `locked`, `username_canonical`, `email_canonical`, `salt`, `expires_at`, `confirmation_token`, `password_requested_at`, `googleId`, `googleAccessToken`, `flickrId`, `flickrAccessToken`, `githubId`, `githubAccessToken`, `linkedinAccessToken`, `linkedinId`, `roles`, `extras`, `longitude`, `latitude`, `facebookId`, `facebookAccessToken`, `twitterId`, `twitterAccessToken`, `credentials_expired`, `credentials_expire_at`, `created_at`, `updated_at`, `deleted_at`, `lastActivity`, `Description`) VALUES
-(2, 'http://www.avatargratuit.com/wp-content/uploads/2014/10/AVATAR-GRATUIT-8.png', 1, 'zuzu38080@gmail.com', 'Aurélien', 'paOTOYatQy9M50y4wYEf5OJNAfu12f0yed++gl7maL9buXWpE8OUi5SakZCm2jnd0q7REJUVmspxvmrqo4scrg==', 'Lyon', 69001, '0674585648', '127.0.0.1', 1, '2014-05-19 09:15:13', 0, 0, 'caah2lhixpycbaowojqevitzbl8tj7ocnke7krnzylslwdiii7grv1tzaswifvikt54uzbwtaqoyn66x8ogs21me6xzaky95mmzctw5y9kehzc2k8pdt67mgx54wvazbamxivp11irm5fjhbc4wrkzbdzc40l6dzcfqqbg8zbw2dnln7vlud0zbd4f8zaj', 'zuzu38080@gmail.com', 'btel3h204q8swo8gwswkkosgk08s480', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, 'CAAH2lHIxpycBAOWOJqevitZBl8TJ7OcnKE7KrnzYLSlWdIII7grV1TZASwIFVikt54uZBWTAqoyN66x8oGs21mE6xZAkY95MmZCtw5Y9kEHZC2K8PDt67mgx54WvaZBamXIvP11Irm5fjhbC4wrKZBdZC40L6dZCfQQbg8ZBw2dnln7vLuD0ZBD4F8ZAJ', '1639712699', NULL, NULL, 0, NULL, '2014-04-03 10:27:30', '2014-05-19 09:15:13', NULL, '2014-05-19 09:15:13', 'Voici mon numéro : 06 00 33 55 44'),
-(4, 'http://www.avatargratuit.com/wp-content/uploads/2014/10/avatar-gratuit.png', 0, 'demo@gmail.com', 'demo', 'xtmUhdviwKHzGwihXw3ARJIqPy/O0cCM5F6RdcvFVe9xy4bP+w7IUN2Q4kdoiy5hryYpTbQaljdtsctk57/H9A==', 'Paris', 75000, NULL, NULL, 1, '2014-05-19 14:20:05', 0, 0, 'demo', 'demo@gmail.com', 'oarnm4brwu80gwckcs88ockgg480kgk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, '698152966', NULL, NULL, NULL, 0, NULL, '2014-04-17 22:09:32', '2014-05-19 14:20:05', NULL, '2014-05-19 14:19:31', ''),
+(2, 'http://www.avatargratuit.com/wp-content/uploads/2014/10/AVATAR-GRATUIT-8.png', 2, 'zuzu38080@gmail.com', 'Aurélien', 'paOTOYatQy9M50y4wYEf5OJNAfu12f0yed++gl7maL9buXWpE8OUi5SakZCm2jnd0q7REJUVmspxvmrqo4scrg==', 'Lyon', 69001, '0674585648', '127.0.0.1', 1, '2014-05-19 09:15:13', 0, 0, 'caah2lhixpycbaowojqevitzbl8tj7ocnke7krnzylslwdiii7grv1tzaswifvikt54uzbwtaqoyn66x8ogs21me6xzaky95mmzctw5y9kehzc2k8pdt67mgx54wvazbamxivp11irm5fjhbc4wrkzbdzc40l6dzcfqqbg8zbw2dnln7vlud0zbd4f8zaj', 'zuzu38080@gmail.com', 'btel3h204q8swo8gwswkkosgk08s480', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, 'CAAH2lHIxpycBAOWOJqevitZBl8TJ7OcnKE7KrnzYLSlWdIII7grV1TZASwIFVikt54uZBWTAqoyN66x8oGs21mE6xZAkY95MmZCtw5Y9kEHZC2K8PDt67mgx54WvaZBamXIvP11Irm5fjhbC4wrKZBdZC40L6dZCfQQbg8ZBw2dnln7vLuD0ZBD4F8ZAJ', '1639712699', NULL, NULL, 0, NULL, '2014-04-03 10:27:30', '2014-05-19 09:15:13', NULL, '2014-05-19 09:15:13', 'Voici mon numéro : 06 00 33 55 44'),
+(4, 'http://45.55.153.47/codeigniter/uploads/users/i044.png', 2, 'demo@gmail.com', 'demo', 'Troiswa_2015', 'Paris', 75000, NULL, NULL, 1, '2014-05-19 14:20:05', 0, 0, 'demo', 'demo@gmail.com', 'oarnm4brwu80gwckcs88ockgg480kgk', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, '698152966', NULL, NULL, NULL, 0, NULL, '2014-04-17 22:09:32', '2014-05-19 14:20:05', NULL, '2014-05-19 14:19:31', ''),
 (5, 'http://localhost/codeigniter/uploads/users/', 2, 'djamchid@3wa.fr', 'djamchid', 'jJkkk9/fsqdfdKH-', NULL, NULL, NULL, NULL, 1, NULL, 0, 0, 'djamchid', 'djamchid@3wa.fr', 'efygs3426agcswcso0ww8c004s8wcck', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '2014-04-18 11:12:20', '2014-04-18 11:12:20', NULL, NULL, ''),
 (6, 'http://localhost/codeigniter/uploads/users/', 0, 'nico.icon@voila.fr', 'nico', 'jJkkk9/fsqdfdKH-', NULL, NULL, NULL, NULL, 1, '2014-04-24 23:22:44', 0, 0, 'nico', 'nico.icon@voila.fr', 'bwafpyjzcpskcsocgscg840ws00skcs', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '2014-04-22 10:30:03', '2014-04-22 10:30:03', NULL, NULL, ''),
 (7, 'http://localhost/codeigniter/uploads/users/intouchable4.jpg', 1, 'cineman@free.fr', 'cineman', 'jJkkk9/fsqdfdKH-', NULL, NULL, NULL, NULL, 1, NULL, 0, 0, 'lol', 'lol@free.fr', '3zrxlukmhp8g00cg44k0wgkwskwggg0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a:0:{}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, '2014-04-22 11:24:50', '2014-04-22 11:24:50', NULL, '2014-09-17 09:40:31', ''),
@@ -690,9 +743,9 @@ INSERT INTO `user` (`id`, `avatar`, `is_admin`, `email`, `username`, `password`,
 (20, '', 0, 'fabouz@gmail.com', 'fabien', 'caff3a46ebe640e5b4175a26f11105bf7e18be76', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (21, 'http://www.avatargratuit.com/wp-content/uploads/2014/10/AVATAR-GRATUIT-2.png', 0, 'toto@gmail.com', 'olivier', '123456', NULL, NULL, NULL, NULL, 1, '2015-03-23 09:26:15', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
 (23, 'http://localhost/codeigniter/uploads/users/intouchable5.jpg', 0, 'aaaa@aaa.aaa', 'aaaaaaaaaaaaaaaaaaaaaaaaa', 'jJkkk9/fsqdfdKH-', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-20 16:05:31', NULL, NULL, NULL, ''),
-(24, 'http://localhost/codeigniter/uploads/users/iphone-6-martin-hajek-11.jpg', 2, 'totototot@ggg.fr', 'enc', 'MpBeTIctdPDxsYeOthjnUnP3fX9eTeQUZPOAJH/1JRbFBUMq/sXJt3+s3HPoZG8Il4sV4/26urXR6BOPSkCnTw==', NULL, NULL, NULL, NULL, 1, '2015-03-29 18:38:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-23 09:40:30', NULL, NULL, NULL, ''),
+(24, 'http://localhost/codeigniter/uploads/users/iphone-6-martin-hajek-11.jpg', 2, 'totototot@ggg.fr', 'enc', 'MpBeTIctdPDxsYeOthjnUnP3fX9eTeQUZPOAJH/1JRbFBUMq/sXJt3+s3HPoZG8Il4sV4/26urXR6BOPSkCnTw==', NULL, NULL, NULL, NULL, 1, '2015-03-29 18:38:07', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-23 09:40:30', NULL, NULL, NULL, ''),
 (26, 'http://localhost/codeigniter/uploads/users/geek.jpg', 2, 'test2@example.com', 'test2', 'OTeKW/8IFMCLj28LwBwptOgWdSc29n4uuJYuDA+lxA5toc68ANmrxeG0DymTA7FrWHaAyCaAgRJ2i29zluvnOg==', NULL, NULL, NULL, NULL, 1, '2015-03-25 15:31:54', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-25 14:39:19', NULL, NULL, NULL, ''),
-(27, 'http://www.filmosphere.com/wp-content/uploads/2015/03/avatar-movie.jpg', 0, 'fabien@gmail.com', 'fabien potencier', 'c2SVZv0CzrDLTo6FRab6yn6MxPUDEmO/5N53HF1EizsMvWbnbo6R7SZDc/XL0BBzG3jbcfQfXIPc6nzSleACQA==', NULL, NULL, NULL, NULL, 1, '2015-03-29 23:25:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-29 18:48:45', NULL, NULL, NULL, '');
+(27, 'http://45.55.153.47/codeigniter/uploads/users/i045.png', 2, 'demonstration@gmail.com', 'demonstration', 'F5Na1/4L/vw9OdWnNS/QtcCEARDB/qZOEMUmZVOrzXDiU0dMoFH38BjYika4MbBWdzXz2sKP3yXe7/016K6caw==', NULL, NULL, NULL, NULL, 1, '2015-03-31 10:44:29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015-03-29 18:43:30', NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -701,9 +754,10 @@ INSERT INTO `user` (`id`, `avatar`, `is_admin`, `email`, `username`, `password`,
 --
 
 CREATE TABLE IF NOT EXISTS `users_movies` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `movie_id` int(11) NOT NULL
+  `movie_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=635 ;
 
 --
@@ -736,7 +790,9 @@ INSERT INTO `users_movies` (`id`, `user_id`, `movie_id`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user_favoris` (
   `user_id` int(11) NOT NULL,
-  `movies_id` int(11) NOT NULL
+  `movies_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`movies_id`),
+  KEY `movies_id` (`movies_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -759,193 +815,6 @@ INSERT INTO `user_favoris` (`user_id`, `movies_id`) VALUES
 (11, 7);
 
 --
--- Index pour les tables exportées
---
-
---
--- Index pour la table `actors`
---
-ALTER TABLE `actors`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `actors_movies`
---
-ALTER TABLE `actors_movies`
- ADD PRIMARY KEY (`actors_id`,`movies_id`), ADD KEY `movies_id` (`movies_id`);
-
---
--- Index pour la table `album`
---
-ALTER TABLE `album`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `categories`
---
-ALTER TABLE `categories`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `cinema`
---
-ALTER TABLE `cinema`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `cinema_movies`
---
-ALTER TABLE `cinema_movies`
- ADD PRIMARY KEY (`cinemas_id`,`movies_id`), ADD KEY `movies_id` (`movies_id`);
-
---
--- Index pour la table `comments`
---
-ALTER TABLE `comments`
- ADD PRIMARY KEY (`id`), ADD KEY `user_id` (`user_id`), ADD KEY `movies_id` (`movies_id`), ADD KEY `date_created` (`date_created`), ADD KEY `date_created_2` (`date_created`);
-
---
--- Index pour la table `directors`
---
-ALTER TABLE `directors`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `directors_movies`
---
-ALTER TABLE `directors_movies`
- ADD PRIMARY KEY (`directors_id`,`movies_id`), ADD KEY `movies_id` (`movies_id`);
-
---
--- Index pour la table `medias`
---
-ALTER TABLE `medias`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `movies`
---
-ALTER TABLE `movies`
- ADD PRIMARY KEY (`id`), ADD KEY `categories_id` (`categories_id`);
-
---
--- Index pour la table `related_movies`
---
-ALTER TABLE `related_movies`
- ADD PRIMARY KEY (`movies_id`,`movies_id_related`), ADD KEY `movies_id_related` (`movies_id_related`);
-
---
--- Index pour la table `sessions`
---
-ALTER TABLE `sessions`
- ADD PRIMARY KEY (`id`), ADD KEY `movies_id` (`movies_id`), ADD KEY `movies_id_2` (`movies_id`), ADD KEY `cinema_id` (`cinema_id`);
-
---
--- Index pour la table `sessions_user`
---
-ALTER TABLE `sessions_user`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `tags`
---
-ALTER TABLE `tags`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `tags_movies`
---
-ALTER TABLE `tags_movies`
- ADD PRIMARY KEY (`movies_id`,`tags_id`), ADD KEY `tags_id` (`tags_id`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQ_8D93D64992FC23A8` (`username_canonical`), ADD UNIQUE KEY `UNIQ_8D93D649A0D96FBF` (`email_canonical`);
-
---
--- Index pour la table `users_movies`
---
-ALTER TABLE `users_movies`
- ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `user_favoris`
---
-ALTER TABLE `user_favoris`
- ADD PRIMARY KEY (`user_id`,`movies_id`), ADD KEY `movies_id` (`movies_id`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `actors`
---
-ALTER TABLE `actors`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
---
--- AUTO_INCREMENT pour la table `album`
---
-ALTER TABLE `album`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT pour la table `categories`
---
-ALTER TABLE `categories`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
---
--- AUTO_INCREMENT pour la table `cinema`
---
-ALTER TABLE `cinema`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT pour la table `comments`
---
-ALTER TABLE `comments`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=105;
---
--- AUTO_INCREMENT pour la table `directors`
---
-ALTER TABLE `directors`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT pour la table `medias`
---
-ALTER TABLE `medias`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT pour la table `movies`
---
-ALTER TABLE `movies`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT pour la table `sessions`
---
-ALTER TABLE `sessions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT pour la table `sessions_user`
---
-ALTER TABLE `sessions_user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `tags`
---
-ALTER TABLE `tags`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT pour la table `users_movies`
---
-ALTER TABLE `users_movies`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=635;
---
 -- Contraintes pour les tables exportées
 --
 
@@ -953,8 +822,8 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=635;
 -- Contraintes pour la table `directors_movies`
 --
 ALTER TABLE `directors_movies`
-ADD CONSTRAINT `directors_movies_ibfk_1` FOREIGN KEY (`directors_id`) REFERENCES `directors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `directors_movies_ibfk_2` FOREIGN KEY (`movies_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `directors_movies_ibfk_1` FOREIGN KEY (`directors_id`) REFERENCES `directors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `directors_movies_ibfk_2` FOREIGN KEY (`movies_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
